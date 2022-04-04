@@ -1,0 +1,113 @@
+<BackColor@Widget>
+    background_color: 1,1,1,1
+    canvas.before:
+        Color:
+            rgba: root.background_color
+        Rectangle:
+            size: self.size
+            pos: self.pos
+            
+<BackLabel@Label+BackColor>
+    font_name: 'Roboto'
+
+<Button>:
+    background_color: (0,0,0,0)
+    disabled_color: (1,1,1,1)
+    canvas.before:
+        Color:
+            rgb: (.7,.7,.7,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    font_name: 'Roboto'
+    font_size: 150
+    bold: True
+    
+<resetbtn@Button>:
+    font_name: "Roboto"
+    font_size: 70
+    bold: True
+
+BoxLayout:
+    padding: 5
+    spacing: 5
+    orientation: 'vertical'
+    
+    BackLabel:
+        size_hint: (1,.25)
+        font_size: 70
+        bold: True
+        text: "TicTacToe"
+        background_color: (.2,.4,.7,1)
+        
+    GridLayout:
+        size_hint: (1,.25)
+        cols: 2
+        
+        BackLabel:
+            background_color: (1,1,1,.4)
+            color: app.colors['grey']
+            id: status
+            text: 'X plays first'
+            bold: True
+            font_size: 60
+            
+    GridLayout:
+        id: grid
+        padding: 15
+        spacing: 15
+        
+        canvas:
+            Color:
+                rgb: (.4,.4,.4)
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        
+        cols: 3
+        
+        Button:
+            id: a1
+            on_press: app.play(a1)
+            text: ""
+        Button:
+            id: b1
+            on_press: app.play(b1)
+            text: ""
+        Button:
+            id: c1
+            on_press: app.play(c1)
+            text: ""
+        Button:
+            id: a2
+            on_press: app.play(a2)
+            text: ""
+        Button:
+            id: b2
+            on_press: app.play(b2)
+            text: ""
+        Button:
+            id: c2
+            on_press: app.play(c2)
+            text: ""
+        Button:
+            id: a3
+            on_press: app.play(a3)
+            text: ""
+        Button:
+            id: b3
+            on_press: app.play(b3)
+            text: ""
+        Button:
+            id: c3
+            on_press: app.play(c3)
+            text: ""
+        
+    resetbtn:
+        background_color: (.7,.2,.1,1)
+        disabled: True
+        #color: app.colors['red']
+        id: reset
+        on_press: app.reset()
+        size_hint: (1,.2)
+        text: "Reset"
