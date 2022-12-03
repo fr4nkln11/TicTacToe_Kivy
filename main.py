@@ -32,29 +32,25 @@ class tictactoeApp(App):
         "b3":self.root.ids.b3.text,
         "c3":self.root.ids.c3.text
         }
-        
+
         def full():
-            if "" not in cells.values():
-                return True
-            else:
-                return False
-        
+            return "" not in cells.values()
+
         if full():
             self.root.ids.status.text = "DRAW!"
             self.root.ids.reset.disabled = False
-            
+
         def win():
             combs = ["a1,b1,c1","a2,b2,c2","a3,b3,c3","a1,a2,a3","b1,b2,b3", "c1,c2,c3", "a1,b2,c3", "c1,b2,a3"]
-        
+
             for combination in combs:
                 wcells = combination.split(',')
-        
+
                 if all(cells[c] == "X" for c in wcells) or all(cells[c] == "O" for c in wcells):
                     winner = cells[wcells[0]]
                     self.root.ids.status.text = f"{winner} WINS the game"
                     return True
-                    break
-         
+
         if win():
             for child in reversed(self.root.ids.grid.children):
                 child.disabled = True
