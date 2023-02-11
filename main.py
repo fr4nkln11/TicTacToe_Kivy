@@ -14,9 +14,9 @@ class tictactoeApp(App):
         'black': hexColor('#000000')
     }
     
-    Xpc = "X"
-    Opc = "O"
-    cpc = Xpc
+    x_piece = "X"
+    o_piece = "O"
+    current_piece = x_piece
     
     #cords = "a1,b1,c1,a2,b2,c2,a3,b3,c3".split(',')
         
@@ -53,8 +53,6 @@ class tictactoeApp(App):
                     winner = cells[wcells[0]]
                     self.root.ids.status.text = f"{winner} WINS the game"
                     return True
-                    break
-         
         if win():
             for child in reversed(self.root.ids.grid.children):
                 child.disabled = True
@@ -62,18 +60,18 @@ class tictactoeApp(App):
     
     
     def switchTurn(self):
-        if self.cpc == self.Xpc:
-            self.cpc = self.Opc
-        elif self.cpc == self.Opc:
-            self.cpc = self.Xpc
+        if self.current_piece == self.x_piece:
+            self.current_piece = self.o_piece
+        elif self.current_piece == self.o_piece:
+            self.current_piece = self.x_piece
         
-        self.root.ids.status.text = f"It's {self.cpc}'s turn"
+        self.root.ids.status.text = f"It's {self.current_piece}'s turn"
             
     def play(self, btn):
-        btn.text = self.cpc
-        if self.cpc == self.Xpc:
+        btn.text = self.current_piece
+        if self.current_piece == self.x_piece:
             btn.disabled_color = self.colors['red']
-        elif self.cpc == self.Opc:
+        elif self.current_piece == self.o_piece:
             btn.disabled_color = self.colors['blue']
             
         btn.disabled = True
@@ -88,7 +86,7 @@ class tictactoeApp(App):
             child.disabled = False
         
         self.root.ids.status.text = "X plays first"
-        self.cpc = self.Xpc
+        self.current_piece = self.x_piece
         self.root.ids.reset.disabled = True
 
 
